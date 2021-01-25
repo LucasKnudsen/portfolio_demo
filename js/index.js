@@ -3,22 +3,32 @@ const root = document.getElementById('root')
 const header = () => {
     let headerContainer = document.createElement('div');
     headerContainer.classList.add('ui', 'inverted', 'segment');
-    let nav = document.createElement('nav');
+    
+    let nav = document.createElement('div');
     nav.classList.add('ui', 'inverted', 'secondary', 'menu')
-    let headerContent = document.createElement("a");
-    headerContent.classList.add('item')
+    
+    let tabs = ['My Portfolio', 'About Me', 'My Projects']
+    tabs.forEach(tab => {
+        let tabLink = document.createElement("a");
+        tabLink.classList.add("item");
+        tabLink.innerText = tab
+        nav.appendChild(tabLink);
+    });
 
-    headerContent.innerText = "My Portfolio";
-    nav.appendChild(headerContent);
     headerContainer.appendChild(nav)
-    root.appendChild(nav);
+    root.appendChild(headerContainer);
 };
 
 
 const startPage = () => {
+    let startPageContainer = document.createElement('div')
+    startPageContainer.classList.add('ui', 'container')
+
     let content = document.createElement('h1')
     content.innerText = 'Hello World';
-    root.appendChild(content);
+
+    startPageContainer.appendChild(content)
+    root.appendChild(startPageContainer);
 };
 
 const footer = () => {
