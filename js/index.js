@@ -40,14 +40,36 @@ const startPage = async (selectedTab) => {
         await displayProjects()
     } else if (selectedTab === 'My CV') {
         await displayCV()
+        make_button()
     } 
     else {
         mainContainer.innerHTML = "<h1>Lucas's World</h1>"
+
     };
     
     mainContainer.classList.add('ui', 'container')
 
     root.appendChild(mainContainer);
+};
+
+const make_button = () => {
+    button = document.createElement('button')
+    button.classList.add('my_button')
+    button.innerText = 'Click me?'
+
+    button.addEventListener('click', () => {
+        get_image = document.querySelector('.image')
+
+        if (get_image.innerHTML !== '<img src="./assets/me.png">') {
+            get_image.innerHTML = '<img src="./assets/me.png">'
+            button.innerText = 'No, give me back dog!'
+        } else {
+            get_image.innerHTML = '<img src="https://images.unsplash.com/photo-1516222338250-863216ce01ea?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80">'
+            button.innerText = "Actually, let's look at the dude again"
+        }
+    })
+
+    mainContainer.appendChild(button)   
 };
 
 const displayProjects = async () => {
@@ -96,6 +118,7 @@ const displayCV = async () => {
     
     let card = document.createElement('div')
     let image = document.createElement('div')
+    let meta = document.createElement('div')
     let cardContent = document.createElement('div')
     let cardDescription = document.createElement('div')
     
@@ -104,13 +127,17 @@ const displayCV = async () => {
     image.innerHTML = `<img src=${cv.image}>`
     cardContent.classList.add('content')
     cardContent.innerHTML = `<div class="header">${cv.title}</div>`
+    meta.classList.add('meta')
+    meta.innerHTML = `<span>${cv.meta}</span>`
     cardDescription.classList.add('description')
-    cardDescription.innerText = cv.description
+    cardDescription.innerText = cv.text
 
-    card.append(image, cardContent, cardDescription)
+    card.append(image, cardContent, meta, cardDescription)
     cvContainer.appendChild(card)
     mainContainer.appendChild(cvContainer)
 }
+
+document
 
 const footer = () => {
     let footerContainer = document.createElement('footer')
@@ -118,7 +145,7 @@ const footer = () => {
     root.appendChild(footerContainer)
 }
     
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     header()
     startPage()
     footer()
