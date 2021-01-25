@@ -7,9 +7,10 @@ const header = () => {
     nav.classList.add('ui', 'inverted', 'secondary', 'menu')
     let headerContent = document.createElement("a");
     headerContent.classList.add('item')
-    
+
     headerContent.innerText = "My Portfolio";
     nav.appendChild(headerContent);
+    headerContainer.appendChild(nav)
     root.appendChild(nav);
 };
 
