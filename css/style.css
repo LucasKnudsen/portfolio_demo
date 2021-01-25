@@ -7,6 +7,15 @@ body {
     justify-content: center;
 }
 
+.ui {
+    padding-top: 50px;
+    margin: 0 auto!important;
+}
+
+.cv {
+    width: 400px!important;
+}
+
 
 h1 {
     font-size: 80px;

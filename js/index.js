@@ -82,8 +82,34 @@ const fetchProjects = async () => {
     return response.projects
 }
 
-const displayCV = async () => {
+const fetchCV = async () => {
+    let response = await (await fetch('./js/cv.json')).json()
+    return response.cv
+}
 
+const displayCV = async () => {
+    let cv = await fetchCV()
+    mainContainer.innerHTML = ''
+    const cvContainer = document.createElement('div')
+    cvContainer.classList.add('ui', 'card', 'cv')
+
+    
+    let card = document.createElement('div')
+    let image = document.createElement('div')
+    let cardContent = document.createElement('div')
+    let cardDescription = document.createElement('div')
+    
+    card.classList.add('ui', 'card', 'cv')
+    image.classList.add('image')
+    image.innerHTML = `<img src=${cv.image}>`
+    cardContent.classList.add('content')
+    cardContent.innerHTML = `<div class="header">${cv.title}</div>`
+    cardDescription.classList.add('description')
+    cardDescription.innerText = cv.description
+
+    card.append(image, cardContent, cardDescription)
+    cvContainer.appendChild(card)
+    mainContainer.appendChild(cvContainer)
 }
 
 const footer = () => {
